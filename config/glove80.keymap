@@ -398,7 +398,7 @@
  &trans  &kp LS(N3)   &kp LS(LBKT)  &kp LS(EQUAL)  &kp LS(RBKT)  &kp LS(FSLH)                                                    &kp GRAVE       &kp LBKT   &kp LS(SEMI)      &kp RBKT  &kp LS(N3)  &trans
  &trans  &kp LS(N2)     &kp LS(N9)      &kp EQUAL    &kp LS(N0)    &kp LS(N8)                                                  &kp LS(SQT)  &kp LS(COMMA)     &kp LS(N2)   &kp LS(DOT)  &kp LS(N6)  &trans
  &trans  &kp LS(N4)  &kp LS(COMMA)      &kp MINUS   &kp LS(DOT)      &kp FSLH  &trans  &trans  &trans  &trans  &trans  &trans      &kp SQT     &kp LS(N9)  &kp LS(MINUS)    &kp LS(N0)  &kp LS(N4)  &trans
- &trans      &trans         &trans         &trans        &trans                 &none  &trans  &trans  &trans  &trans  &trans                      &trans         &trans        &trans      &trans  &trans
+ &trans      &trans         &trans         &trans        &trans                &trans  &trans  &trans  &trans  &trans  &trans                      &trans         &trans        &trans      &trans  &trans
             >;
         };
 
@@ -426,12 +426,12 @@
 
         layer_Mouse {
             bindings = <
- &trans  &trans               &trans               &trans               &trans                                                                             &trans          &trans           &trans  &trans  &trans
- &trans  &trans               &trans               &trans               &trans  &trans                                                     &trans          &trans          &trans           &trans  &trans  &trans
- &trans  &trans               &trans         &msc SCRL_UP               &trans  &trans                                                     &trans  &msc SCRL_DOWN    &msc SCRL_UP           &trans  &trans  &trans
- &trans  &trans       &msc SCRL_LEFT       &msc SCRL_DOWN      &msc SCRL_RIGHT  &trans                                                     &trans  &msc SCRL_LEFT    &mmv MOVE_UP  &msc SCRL_RIGHT  &trans  &trans
- &trans  &trans  &mo LAYER_MouseSlow  &mo LAYER_MouseFast  &mo LAYER_MouseWarp  &trans     &trans  &trans   &none  &trans  &trans  &trans  &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans  &trans
- &trans  &trans               &trans               &trans               &trans          &mkp LCLK  &trans  &trans  &trans  &trans  &trans               &mkp LCLK       &mkp RCLK        &mkp MCLK  &trans  &trans
+ &trans  &trans               &trans               &trans               &trans                                                                          &trans          &trans           &trans  &trans  &trans
+ &trans  &trans               &trans               &trans               &trans  &trans                                                  &trans          &trans          &trans           &trans  &trans  &trans
+ &trans  &trans               &trans         &msc SCRL_UP               &trans  &trans                                                  &trans  &msc SCRL_DOWN    &msc SCRL_UP           &trans  &trans  &trans
+ &trans  &trans       &msc SCRL_LEFT       &msc SCRL_DOWN      &msc SCRL_RIGHT  &trans                                                  &trans  &msc SCRL_LEFT    &mmv MOVE_UP  &msc SCRL_RIGHT  &trans  &trans
+ &trans  &trans  &mo LAYER_MouseSlow  &mo LAYER_MouseFast  &mo LAYER_MouseWarp  &trans  &trans  &trans   &none  &trans  &trans  &trans  &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans  &trans
+ &trans  &trans            &mkp LCLK            &mkp MCLK            &mkp RCLK          &trans  &trans  &trans  &trans  &trans  &trans               &mkp LCLK       &mkp MCLK        &mkp RCLK  &trans  &trans
             >;
         };
 
