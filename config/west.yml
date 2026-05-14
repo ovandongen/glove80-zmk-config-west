@@ -14,7 +14,7 @@ manifest:
     - name: zmk-raw-hid
       remote: zzeneg
       revision: main
-    - ame: zmk-hid-viz
+    - name: zmk-hid-viz
       remote: ovandongen
       revision: main
   self:
