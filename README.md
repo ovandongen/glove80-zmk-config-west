@@ -1,4 +1,4 @@
-# `west`-based Custom ZMK Configuration for MoErgo Glove80
+# `west`-based Custom ZMK Configuration for MoErgo Glove80.
 
 ![MoErgo Logo](moergo_logo.png)
 
