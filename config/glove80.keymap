@@ -321,7 +321,24 @@
 
 /* Custom Defined Behaviors */
 / {
-
+dpi_800:  dpi_800  { 
+            compatible = "zmk,behavior-hid-viz-emit-fixed"; 
+            #binding-cells = <0>; 
+            action = "core.pointing.dpi.set";   
+            value = <800>;  
+        };
+        dpi_1600: dpi_1600 { 
+            compatible = "zmk,behavior-hid-viz-emit-fixed"; 
+            #binding-cells = <0>; 
+            action = "core.pointing.dpi.set";   
+            value = <1600>; 
+        };
+        snipe_on: snipe_on { 
+            compatible = "zmk,behavior-hid-viz-emit-fixed"; 
+            #binding-cells = <0>; 
+            action = "core.pointing.snipe.set"; 
+            value = <1>;    
+        };
 };
 
 /* Generated input processors */
@@ -404,12 +421,12 @@
 
         layer_Lower {
             bindings = <
-         &kp C_BRI_DN  &kp C_BRI_UP      &kp C_PREV      &kp C_NEXT         &kp C_PP                                                                         &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP            &none  &kp PAUSE_BREAK
-               &trans         &none           &none           &none            &none   &kp HOME                                                  &kp LS(N9)  &kp KP_NUM  &kp KP_EQUAL  &kp KP_SLASH  &kp KP_MULTIPLY  &kp PRINTSCREEN
-               &trans         &none           &none    &kp UP_ARROW            &none    &kp END                                                  &kp LS(N0)   &kp KP_N7     &kp KP_N8     &kp KP_N9     &kp KP_MINUS   &kp SCROLLLOCK
-               &trans         &none  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp PG_UP                                                  &kp LS(N5)   &kp KP_N4     &kp KP_N5     &kp KP_N6      &kp KP_PLUS            &none
-               &trans     &kp K_APP           &none         &kp F11          &kp F12  &kp PG_DN  &trans  &trans   &to 0  &trans  &trans  &trans   &kp COMMA   &kp KP_N1     &kp KP_N2     &kp KP_N3     &kp KP_ENTER           &trans
- &magic LAYER_Magic 0      &kp CAPS         &kp INS         &kp F11          &kp F12             &trans  &trans  &trans  &trans  &trans  &trans               &kp KP_N0     &kp KP_N0    &kp KP_DOT     &kp KP_ENTER           &trans
+         &kp C_BRI_DN  &kp C_BRI_UP      &kp C_PREV      &kp C_NEXT         &kp C_PP                                                                                 &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP            &none  &kp PAUSE_BREAK
+               &trans         &none           &none           &none            &none   &kp HOME                                                          &kp LS(N9)  &kp KP_NUM  &kp KP_EQUAL  &kp KP_SLASH  &kp KP_MULTIPLY  &kp PRINTSCREEN
+               &trans         &none           &none    &kp UP_ARROW            &none    &kp END                                                          &kp LS(N0)   &kp KP_N7     &kp KP_N8     &kp KP_N9     &kp KP_MINUS   &kp SCROLLLOCK
+               &trans         &none  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp PG_UP                                                          &kp LS(N5)   &kp KP_N4     &kp KP_N5     &kp KP_N6      &kp KP_PLUS            &none
+               &trans     &kp K_APP           &none         &kp F11          &kp F12  &kp PG_DN  &trans  &trans  &to LAYER_Base  &trans  &trans  &trans   &kp COMMA   &kp KP_N1     &kp KP_N2     &kp KP_N3     &kp KP_ENTER           &trans
+ &magic LAYER_Magic 0      &kp CAPS         &kp INS         &kp F11          &kp F12             &trans  &trans          &trans  &trans  &trans  &trans               &kp KP_N0     &kp KP_N0    &kp KP_DOT     &kp KP_ENTER           &trans
             >;
         };
 
@@ -420,18 +437,18 @@
        &none  &rgb_ug RGB_SPI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG                                                         &none   &none   &none   &none   &none           &none
  &bootloader  &rgb_ug RGB_SPD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF                                                         &none   &none   &none   &none   &none     &bootloader
   &sys_reset            &none            &none            &none            &none            &none   &bt_2   &bt_3         &none   &none   &none   &none   &none   &none   &none   &none   &none      &sys_reset
-       &none            &none            &none            &none            &none                    &bt_0   &bt_1  &out OUT_USB   &none   &none   &none           &none   &none   &none   &none           &to 0
+       &none            &none            &none            &none            &none                    &bt_0   &bt_1  &out OUT_USB   &none   &none   &none           &none   &none   &none   &none  &to LAYER_Base
             >;
         };
 
         layer_Mouse {
             bindings = <
- &trans  &trans               &trans               &trans               &trans                                                                          &trans          &trans           &trans  &trans  &trans
- &trans  &trans               &trans               &trans               &trans  &trans                                                  &trans          &trans          &trans           &trans  &trans  &trans
- &trans  &trans               &trans         &msc SCRL_UP               &trans  &trans                                                  &trans  &msc SCRL_DOWN    &msc SCRL_UP           &trans  &trans  &trans
- &trans  &trans       &msc SCRL_LEFT       &msc SCRL_DOWN      &msc SCRL_RIGHT  &trans                                                  &trans  &msc SCRL_LEFT    &mmv MOVE_UP  &msc SCRL_RIGHT  &trans  &trans
- &trans  &trans  &mo LAYER_MouseSlow  &mo LAYER_MouseFast  &mo LAYER_MouseWarp  &trans  &trans  &trans   &none  &trans  &trans  &trans  &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans  &trans
- &trans  &trans            &mkp LCLK            &mkp MCLK            &mkp RCLK          &trans  &trans  &trans  &trans  &trans  &trans               &mkp LCLK       &mkp MCLK        &mkp RCLK  &trans  &trans
+ &trans  &trans               &trans               &trans               &trans                                                                               &trans          &trans           &trans  &trans  &trans
+ &trans  &trans               &trans               &trans               &trans     &trans                                                    &trans          &trans          &trans           &trans  &trans  &trans
+ &trans  &trans               &trans         &msc SCRL_UP               &trans     &trans                                                    &trans  &msc SCRL_DOWN    &msc SCRL_UP           &trans  &trans  &trans
+ &trans  &trans       &msc SCRL_LEFT       &msc SCRL_DOWN      &msc SCRL_RIGHT     &trans                                                    &trans  &msc SCRL_LEFT    &mmv MOVE_UP  &msc SCRL_RIGHT  &trans  &trans
+ &trans  &trans  &mo LAYER_MouseSlow  &mo LAYER_MouseFast  &mo LAYER_MouseWarp  &snipe_on  &trans  &trans   &none  &trans  &trans  &trans  &dpi_800  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans  &trans
+ &trans  &trans            &mkp LCLK            &mkp MCLK            &mkp RCLK             &trans  &trans  &trans  &trans  &trans  &trans                 &mkp LCLK       &mkp MCLK        &mkp RCLK  &trans  &trans
             >;
         };
 
