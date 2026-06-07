@@ -345,6 +345,11 @@ dpi_800:  dpi_800  {
             action = "core.pointing.snipe.set";
             value = <0>;
         };
+snipe_mo: snipe_mo {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&snipe_on>, <&macro_pause_for_release>, <&snipe_off>;
+};
 };
 
 /* Generated input processors */
@@ -449,12 +454,12 @@ dpi_800:  dpi_800  {
 
         layer_Mouse {
             bindings = <
- &trans  &trans               &trans               &trans               &trans                                                                                &trans          &trans           &trans  &trans  &trans
- &trans  &trans               &trans               &trans               &trans      &trans                                                    &trans          &trans          &trans           &trans  &trans  &trans
- &trans  &trans               &trans         &msc SCRL_UP               &trans      &trans                                                    &trans  &msc SCRL_DOWN    &msc SCRL_UP           &trans  &trans  &trans
- &trans  &trans       &msc SCRL_LEFT       &msc SCRL_DOWN      &msc SCRL_RIGHT  &snipe_off                                                    &trans  &msc SCRL_LEFT    &mmv MOVE_UP  &msc SCRL_RIGHT  &trans  &trans
- &trans  &trans  &mo LAYER_MouseSlow  &mo LAYER_MouseFast  &mo LAYER_MouseWarp   &snipe_on  &trans  &trans   &none  &trans  &trans  &trans  &dpi_800  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans  &trans
- &trans  &trans            &mkp LCLK            &mkp MCLK            &mkp RCLK              &trans  &trans  &trans  &trans  &trans  &trans                 &mkp LCLK       &mkp MCLK        &mkp RCLK  &trans  &trans
+ &trans  &trans               &trans               &trans               &trans                                                                                   &trans          &trans           &trans  &trans  &trans
+ &trans  &trans               &trans               &trans               &trans      &trans                                                       &trans          &trans          &trans           &trans  &trans  &trans
+ &trans  &trans               &trans         &msc SCRL_UP               &trans      &trans                                                       &trans  &msc SCRL_DOWN    &msc SCRL_UP           &trans  &trans  &trans
+ &trans  &trans       &msc SCRL_LEFT       &msc SCRL_DOWN      &msc SCRL_RIGHT  &snipe_off                                                       &trans  &msc SCRL_LEFT    &mmv MOVE_UP  &msc SCRL_RIGHT  &trans  &trans
+ &trans  &trans  &mo LAYER_MouseSlow  &mo LAYER_MouseFast  &mo LAYER_MouseWarp   &snipe_on  &snipe_mo  &trans   &none  &trans  &trans  &trans  &dpi_800  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans  &trans
+ &trans  &trans            &mkp LCLK            &mkp MCLK            &mkp RCLK                 &trans  &trans  &trans  &trans  &trans  &trans                 &mkp LCLK       &mkp MCLK        &mkp RCLK  &trans  &trans
             >;
         };
 
