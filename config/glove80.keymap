@@ -360,6 +360,38 @@
             #binding-cells = <0>;
             id = <2>;
         };
+        signal_3: signal_3 {
+            compatible = "zmk,behavior-hid-signal-fixed";
+            #binding-cells = <0>;
+            id = <3>;
+        };
+        signal_4: signal_4 {
+            compatible = "zmk,behavior-hid-signal-fixed";
+            #binding-cells = <0>;
+            id = <4>;
+        };
+        signal_5: signal_5 {
+            compatible = "zmk,behavior-hid-signal-fixed";
+            #binding-cells = <0>;
+            id = <5>;
+        };
+        dragscroll_on: dragscroll_on { 
+            compatible = "zmk,behavior-hid-viz-emit-fixed"; 
+            #binding-cells = <0>; 
+            action = "core.pointing.dragScroll.set"; 
+            value = <1>;    
+        };
+        dragscroll_off: dragscroll_off {
+            compatible = "zmk,behavior-hid-viz-emit-fixed";
+            #binding-cells = <0>;
+            action = "core.pointing.dragScroll.set";
+            value = <0>;
+        };
+        dragscroll_mo: dragscroll_mo {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&dragscroll_on>, <&macro_pause_for_release>, <&dragscroll_off>;
+        };
 
 };
 
@@ -465,12 +497,12 @@
 
         layer_Mouse {
             bindings = <
- &trans     &trans               &trans               &trans               &trans                                                                                   &trans          &trans           &trans  &trans  &trans
- &trans  &signal_1            &signal_2               &trans               &trans      &trans                                                       &trans          &trans          &trans           &trans  &trans  &trans
- &trans     &trans               &trans         &msc SCRL_UP               &trans      &trans                                                       &trans  &msc SCRL_DOWN    &msc SCRL_UP           &trans  &trans  &trans
- &trans     &trans       &msc SCRL_LEFT       &msc SCRL_DOWN      &msc SCRL_RIGHT  &snipe_off                                                       &trans  &msc SCRL_LEFT    &mmv MOVE_UP  &msc SCRL_RIGHT  &trans  &trans
- &trans     &trans  &mo LAYER_MouseSlow  &mo LAYER_MouseFast  &mo LAYER_MouseWarp   &snipe_on  &snipe_mo  &trans   &none  &trans  &trans  &trans  &dpi_800  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans  &trans
- &trans     &trans            &mkp LCLK            &mkp MCLK            &mkp RCLK                 &trans  &trans  &trans  &trans  &trans  &trans                 &mkp LCLK       &mkp MCLK        &mkp RCLK  &trans  &trans
+ &trans     &trans          &trans     &trans     &trans                                                                                        &trans          &trans           &trans  &trans  &trans
+ &trans  &signal_1       &signal_2  &signal_3  &signal_4  &signal_5                                                             &trans          &trans          &trans           &trans  &trans  &trans
+ &trans     &trans          &trans     &trans     &trans     &trans                                                             &trans  &msc SCRL_DOWN    &msc SCRL_UP           &trans  &trans  &trans
+ &trans     &trans       &mkp LCLK  &mkp MCLK  &mkp RCLK     &trans                                                          &dpi_1600  &msc SCRL_LEFT    &mmv MOVE_UP  &msc SCRL_RIGHT  &trans  &trans
+ &trans     &trans  &dragscroll_mo     &trans  &snipe_mo     &trans       &snipe_mo  &trans   &none  &trans  &trans  &trans   &dpi_800  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans  &trans
+ &trans     &trans       &mkp LCLK  &mkp MCLK  &mkp RCLK             &dragscroll_mo  &trans  &trans  &trans  &trans  &trans                  &mkp LCLK       &mkp MCLK        &mkp RCLK  &trans  &trans
             >;
         };
 
