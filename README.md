@@ -1,5 +1,5 @@
 # `west`-based Custom ZMK Configuration for MoErgo Glove80.
-test build (both halves rgb)
+test build (usb fix)
 ![MoErgo Logo](moergo_logo.png)
 
 This template repository provides `west`-based ZMK configuration for the MoErgo Glove80 wireless split contoured keyboard.
