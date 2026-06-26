@@ -20,7 +20,6 @@
 #include <dt-bindings/zmk/rgb.h>
 
 /* On demand includes */
-#include <dt-bindings/zmk/input_transform.h>
 #include <dt-bindings/zmk/pointing.h>
 #include <input/processors.dtsi>
 
@@ -68,10 +67,10 @@
 #define LAYER_Symbol 1
 #define LAYER_Lower 2
 #define LAYER_Magic 3
-#define LAYER_Mouse 4
-#define LAYER_MouseSlow 5
-#define LAYER_MouseFast 6
-#define LAYER_MouseWarp 7
+#define LAYER_Mouse_Signals 4
+#define LAYER_Nav 5
+#define LAYER_Nav_Alt 6
+#define LAYER_Nav_Alt_Shift 7
 
 /* To deal with the situation where there is no Lower layer, to keep &lower happy */
 #ifndef LAYER_Lower
@@ -83,18 +82,6 @@
 
 /* Input Listeners */
 &mmv_input_listener {
-    LAYER_MouseSlow {
-        layers = <LAYER_MouseSlow>;
-        input-processors = <&zip_xy_scaler 1 9>;
-    };
-    LAYER_MouseFast {
-        layers = <LAYER_MouseFast>;
-        input-processors = <&zip_xy_scaler 3 1>;
-    };
-    LAYER_MouseWarp {
-        layers = <LAYER_MouseWarp>;
-        input-processors = <&zip_xy_scaler 6 1>;
-    };
 };
 
 /* System behavior and Macros */
@@ -443,7 +430,16 @@
 };
 
 /* Automatically generated combos definitions */
+/ {
+    combos {
+        compatible = "zmk,combos";
 
+        combo_snipe3 {
+            key-positions = <POS_LH_C4R6 POS_LH_C2R6>;
+            bindings = <&snipe_mo>;
+        };
+    };
+};
 
 /* Automatically generated keymap */
 / {
@@ -453,12 +449,12 @@
 
         layer_Base {
             bindings = <
-               &kp F1     &kp F2     &kp F3    &kp F4     &kp F5                                                                                                                &kp F6     &kp F7    &kp F8    &kp F9    &kp F10
-            &kp EQUAL     &kp N1     &kp N2    &kp N3     &kp N4  &kp N5                                                                                                &kp N6  &kp N7     &kp N8    &kp N9    &kp N0  &kp MINUS
-              &kp TAB      &kp Q      &kp W     &kp E      &kp R   &kp T                                                                                                 &kp Y   &kp U      &kp I     &kp O     &kp P   &kp BSLH
-              &kp ESC      &kp A      &kp S     &kp D      &kp F   &kp G                                                                                                 &kp H   &kp J      &kp K     &kp L  &kp SEMI    &kp SQT
-            &kp GRAVE      &kp Z      &kp X     &kp C      &kp V   &kp B               &kp DEL  &kp LCTRL  &to LAYER_Lower  &caps_word            &kp RCTRL   &kp BSPC   &kp N   &kp M  &kp COMMA   &kp DOT  &kp FSLH  &kp PG_UP
- &magic LAYER_Magic 0  &kp LCTRL  &kp SPACE  &kp LEFT  &kp RIGHT          &lt LAYER_Symbol RET  &kp LSHFT         &kp LALT    &kp RALT  &lt LAYER_Mouse TAB  &kp SPACE          &kp UP   &kp DOWN  &kp LBKT  &kp RBKT  &kp PG_DN
+           &mt F11 F1  &mt F12 F2  &mt F13 F3      &mt F14 F4  &mt F15 F5                                                                                                                             &mt F16 F6           &mt F17 F7                 &mt F18 F8  &mt F19 F9  &mt F20 F10
+            &kp EQUAL      &kp N1      &kp N2          &kp N3      &kp N4  &kp N5                                                                                                        &kp N6           &kp N7               &kp N8                     &kp N9      &kp N0    &kp MINUS
+              &kp TAB       &kp Q       &kp W           &kp E       &kp R   &kp T                                                                                                         &kp Y            &kp U                &kp I                      &kp O       &kp P     &kp BSLH
+              &kp ESC       &kp A       &kp S           &kp D       &kp F   &kp G                                                                                                         &kp H  &lt LAYER_Nav J  &lt LAYER_Nav_Alt K  &lt LAYER_Nav_Alt_Shift L    &kp SEMI      &kp SQT
+            &kp GRAVE       &kp Z       &kp X           &kp C       &kp V   &kp B               &kp DEL  &kp LCTRL  &to LAYER_Lower  &caps_word                    &kp RCTRL   &kp BSPC   &kp N            &kp M            &kp COMMA                    &kp DOT    &kp FSLH    &kp PG_UP
+ &magic LAYER_Magic 0   &kp LCTRL   &mkp LCLK  &dragscroll_mo   &mkp RCLK          &lt LAYER_Symbol RET  &kp LSHFT         &kp LALT    &kp RALT  &lt LAYER_Mouse_Signals TAB  &kp SPACE                   &kp UP             &kp DOWN                   &kp LBKT    &kp RBKT    &kp PG_DN
             >;
         };
 
@@ -495,47 +491,47 @@
             >;
         };
 
-        layer_Mouse {
+        layer_Mouse_Signals {
             bindings = <
- &trans     &trans          &trans     &trans     &trans                                                                                        &trans          &trans           &trans  &trans  &trans
- &trans  &signal_1       &signal_2  &signal_3  &signal_4  &signal_5                                                             &trans          &trans          &trans           &trans  &trans  &trans
- &trans     &trans          &trans     &trans     &trans     &trans                                                             &trans  &msc SCRL_DOWN    &msc SCRL_UP           &trans  &trans  &trans
- &trans     &trans       &mkp LCLK  &mkp MCLK  &mkp RCLK     &trans                                                          &dpi_1600  &msc SCRL_LEFT    &mmv MOVE_UP  &msc SCRL_RIGHT  &trans  &trans
- &trans     &trans  &dragscroll_mo     &trans  &snipe_mo     &trans       &snipe_mo  &trans   &none  &trans  &trans  &trans   &dpi_800  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans  &trans
- &trans     &trans       &mkp LCLK  &mkp MCLK  &mkp RCLK             &dragscroll_mo  &trans  &trans  &trans  &trans  &trans                  &mkp LCLK       &mkp MCLK        &mkp RCLK  &trans  &trans
+ &signal_1  &signal_2  &signal_3  &signal_4  &signal_5                                                                       &trans  &trans  &trans  &trans  &trans
+    &trans     &trans     &trans     &trans     &trans  &trans                                                       &trans  &trans  &trans  &trans  &trans  &trans
+    &trans     &trans     &trans     &trans     &trans  &trans                                                       &trans  &trans  &trans  &trans  &trans  &trans
+    &trans     &trans     &trans     &trans     &trans  &trans                                                       &trans  &trans  &trans  &trans  &trans  &trans
+    &trans     &trans     &trans     &trans     &trans  &trans  &trans    &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+    &trans     &trans     &trans     &trans     &trans          &trans  &dpi_800  &dpi_1600  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans
             >;
         };
 
-        layer_MouseSlow {
+        layer_Nav {
             bindings = <
- &trans  &trans  &trans  &trans  &trans                                                                  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans
+ &trans  &trans    &trans    &trans     &trans                                                                  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans    &trans    &trans     &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans    &trans    &kp UP     &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans    &trans    &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans    &trans    &trans     &trans          &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans
             >;
         };
 
-        layer_MouseFast {
+        layer_Nav_Alt {
             bindings = <
- &trans  &trans  &trans  &trans  &trans                                                                  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans
+ &trans  &trans        &trans        &trans         &trans                                                                  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans        &trans        &trans         &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans        &trans    &kp LA(UP)         &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans  &kp LA(LEFT)  &kp LA(DOWN)  &kp LA(RIGHT)  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans        &trans        &trans         &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans        &trans        &trans         &trans          &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans
             >;
         };
 
-        layer_MouseWarp {
+        layer_Nav_Alt_Shift {
             bindings = <
- &trans  &trans  &trans  &trans  &trans                                                                  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans
+ &trans  &trans            &trans            &trans             &trans                                                                  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans            &trans            &trans             &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans            &trans    &kp LA(LS(UP))             &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans  &kp LA(LS(LEFT))  &kp LA(LS(DOWN))  &kp LA(LS(RIGHT))  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans            &trans            &trans             &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans            &trans            &trans             &trans          &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans
             >;
         };
 
